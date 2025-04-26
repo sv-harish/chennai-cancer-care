@@ -1,0 +1,322 @@
+:root {
+    --blue-primary: #1E4E8C;
+    --blue-accent: #38BDF8;
+    --blue-soft: #E6F0FA;
+    --blue-dark: #0B1F38;
+    --blue-glow: #00E0FF;
+    --blue-sky: #CDE6FF;
+    --text-light: #ffffff;
+    --text-muted: #d0dce8;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: sans-serif;
+    background-color: var(--blue-soft);
+    color: var(--blue-dark);
+  }
+/* ===== HEADER ===== */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: transparent; /* Transparent header */
+  }
+  
+  .logo {
+    height: 60px;
+  }
+  
+  .menu-toggle {
+    font-size: 2rem;
+    color: var(--blue-dark);
+    cursor: pointer;
+    display: block; /* Always visible even on PC */
+  }
+  
+  #nav-list {
+    display: none;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    background: var(--blue-soft);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+  
+  #nav-list.active {
+    display: flex;
+  }
+  
+  #nav-list li a {
+    color: var(--blue-dark);
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  /* MOBILE RESPONSIVE */
+  @media (max-width: 768px) {
+    .logo {
+      height: 50px;
+    }
+  
+    #nav-list {
+      width: 180px;
+      top: 70px;
+    }
+  }
+  
+  
+  /* MOBILE RESPONSIVE */
+  @media (max-width: 768px) {
+    .logo {
+      height: 50px;
+    }
+  
+    #nav-list {
+      width: 180px;
+      top: 70px;
+    }
+  }  
+  /* ===== PARALLAX SCENE ===== */
+  .parallax-scene {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    perspective: 1000px;
+  }
+  
+  .layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    will-change: transform;
+    pointer-events: none;
+  }
+  
+  /* Background */
+  .background {
+    width: 100%;
+    height: 100%;
+    background: url('../assets/background-main.png') center center / cover no-repeat;
+    z-index: 1;
+  }
+  
+  /* Bed */
+  .bed {
+    width: 100%;
+    left: 5%;
+    top:-10%;
+    bottom: 100%;
+    z-index: 2;
+  }
+  
+  /* Monitor */
+  .monitor {
+    width: 70%;
+    left: 10%;
+    top: 5%;
+    z-index: 3;
+  }
+  
+  /* Cabinet */
+  .cabinet {
+    width: 100%;
+    top: -20%;
+    left: 0%;
+    bottom: 0%;
+    z-index: 3;
+  }
+  
+  /* Robot Group */
+  .robot-group {
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .robot-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .robot-container::before {
+    content: "";
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 309px; /* Golden ratio */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    z-index: -1;
+  }
+  
+  .robot {
+    width: 300px;
+  }
+  
+  /* Eyes */
+  .eye {
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 68px;
+    overflow: hidden;
+    z-index: 6;
+  }
+  
+  .left-eye { left: 113px; }
+  .right-eye { left: 168px; }
+  
+  .pupil {
+    width: 8px;
+    height: 8px;
+    background: black;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    transition: transform 0.1s;
+  }
+  
+  /* Organs */
+  .organ {
+    position: absolute;
+    width: 40px;
+    animation: pulse 2s infinite ease-in-out;
+    cursor: pointer;
+    z-index: 6;
+  }
+  
+  .brain { top: 1px; left: 130px; }
+  .lungs { top: 150px; left: 130px; }
+  .heart { top: 180px; left: 180px; }
+  .stomach { top: 220px; left: 130px; }
+  .intestines { top: 280px; left: 130px; }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 5px var(--blue-glow)); }
+    50% { transform: scale(1.08); filter: drop-shadow(0 0 15px var(--blue-glow)); }
+  }
+  
+  /* Hover Box */
+  .hover-box {
+    position: absolute;
+    top: 320px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    width: clamp(180px, 15vw, 288px);
+    padding: 1rem;
+    background: var(--blue-sky);
+    color: var(--blue-dark);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  #organ-gif {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 8px;
+  }
+  
+  
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--blue-dark);
+    color: var(--text-light);
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  /* ===== MOBILE RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .parallax-scene {
+      overflow-x: scroll;
+      overflow-y: hidden;
+      white-space: nowrap;
+      display: flex;
+      flex-direction: row;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+  
+    .layer {
+      position: relative;
+      display: inline-block;
+      scroll-snap-align: start;
+      height: 100vh;
+      width: 100vw;
+    }
+    .background {
+        width: 150vw;
+        height: 100vh;
+        background: url('../assets/background-main.png') center center / cover no-repeat;
+        background-position: center;
+        background-size: cover;
+        z-index: 1;
+      }
+      
+    .bed, .monitor, .cabinet, .tray, .robot-group {
+      width: 100vw !important;
+      height: 100vh !important;
+      left: 0 !important;
+      top: 0 !important;
+      bottom: unset !important;
+      position: relative !important;
+    }
+  
+    .robot-group {
+      justify-content: center;
+      align-items: center;
+      display: flex;
+    }
+  
+    .robot {
+      width: 200px;
+    }
+  
+    .eye {
+      width: 14px;
+      height: 14px;
+    }
+  
+    .organ {
+      width: 20px;
+    }
+  
+    .hover-box {
+      top: 280px;
+      width: 90%;
+      left: 5%;
+    }
+  }
+  .robot-group,
+.robot-container,
+.organ,
+.hover-box {
+  pointer-events: auto;
+}
