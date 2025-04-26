@@ -14,7 +14,6 @@ const organData = {
 
 organs.forEach(organ => {
   const key = [...organ.classList].find(cls => organData[cls]);
-  
   if (!key) return;
 
   organ.addEventListener('mouseenter', () => {
@@ -69,10 +68,10 @@ window.addEventListener('load', () => {
 // ===== Mobile Navigation Toggle =====
 const menuToggle = document.getElementById('menu-toggle');
 const navList = document.getElementById('nav-list');
-
 menuToggle.addEventListener('click', () => {
   navList.classList.toggle('active');
 });
+
 // ===== Layered Parallax Movement =====
 const layers = [
   { selector: '.background', factorDesktop: 10, factorMobile: 3 },
@@ -93,7 +92,7 @@ function handleParallax(x) {
 }
 
 function handleScrollParallax() {
-  const scrollX = window.scrollY; // Only X needed now for mobile
+  const scrollX = window.scrollY;
   layers.forEach(layer => {
     gsap.to(layer.selector, {
       x: scrollX * (layer.factorMobile / 10),
@@ -109,10 +108,7 @@ if (window.innerWidth > 768) {
     const x = (e.clientX / window.innerWidth - 0.5) * 2;
     handleParallax(x);
   });
-} 
-// Mobile = Scroll Left-Right Movement
-else {
-  window.addEventListener('scroll', () => {
-    handleScrollParallax();
-  });
+} else {
+  // Mobile = Scroll Left-Right Movement
+  window.addEventListener('scroll', handleScrollParallax);
 }
